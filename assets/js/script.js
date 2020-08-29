@@ -56,7 +56,6 @@ correctAnswer: "a1"
 },
 
 ];
-var timeLeft = 90;
 function gameStart() {
 
     var timeLeft = 90;
@@ -70,11 +69,13 @@ function gameStart() {
     }
 }, 1000);
 
-var timerBarEl = document.createElement("li");
-timerBarEl.className = ".top-border";
-timerBarEl.textContent = "Time Left: " + timeLeft;
+var timerBarEl = document.getElementById("time-score");
 //console.log(timerBarEl);
 topBar.appendChild(timerBarEl);
-};
 
-startGame.onclick = gameStart();
+}
+
+
+
+
+startGame.onclick = gameStart;
