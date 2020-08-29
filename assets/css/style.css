@@ -2,4 +2,40 @@
    --primary: #fd906c; 
    --secondary: #be460e;
    --tertiary: #8a3006;
+   --accent: #ffffff;
+}
+
+body {
+    background-color: var(--primary);
+    color: var(--secondary);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.top-border {
+    font-size: 24px;
+    color: var(--accent);
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+}
+.top-border a {
+    text-decoration: none;
+    color: inherit;
+}
+ ul {
+    list-style-type: none;
+}
+main {
+    text-align: center;
+}
+.game-wrapper {
+    display: none;
+}
+.start-button {
+    font-size: 28px;
+    background-color: var(--tertiary);
+    color: var(--primary);
+}
+.start-button:hover {
+    background-color: var(--secondary);
 }
