@@ -56,7 +56,6 @@ correctAnswer: "a1"
 },
 
 ];
-var timeLeft = 90;
 function gameStart() {
 
     var timeLeft = 90;
@@ -67,14 +66,33 @@ function gameStart() {
     } else {
     timerBarEl.textContent = "Times Up!";
     clearInterval(clockStart);
+    startGame.style.display = "block";
+    startGame.textContent = "Try Again";
     }
 }, 1000);
 
-var timerBarEl = document.createElement("li");
-timerBarEl.className = ".top-border";
-timerBarEl.textContent = "Time Left: " + timeLeft;
+var timerBarEl = document.getElementById("time-score");
 //console.log(timerBarEl);
 topBar.appendChild(timerBarEl);
-};
+startGame.style.display = "none";
 
-startGame.onclick = gameStart();
+}
+
+// function showQuestions(questions) {
+//     for (var i = 0; i > questions.length; i++) {
+//         var question = questions[i].q;
+//         var answer = questions[i].correctAnswer;
+//         var userAnswer = confirm(question);
+
+//         if (userAnswer === answer) {
+//             alert("Correct");
+//         } else {
+//             alert("Incorrect!");
+//         }
+//     }
+// };
+
+
+//showQuestions();
+//console.log(questions[0].answers);
+startGame.onclick = gameStart;
