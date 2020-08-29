@@ -32,9 +32,13 @@ main {
     display: none;
 }
 .start-button {
+    display: block;
+    margin: 0 auto;
     font-size: 28px;
     background-color: var(--tertiary);
     color: var(--primary);
+    border-radius: 10px;
+    padding: 0 15px 0 15px;
 }
 .start-button:hover {
     background-color: var(--secondary);

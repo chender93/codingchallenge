@@ -66,16 +66,33 @@ function gameStart() {
     } else {
     timerBarEl.textContent = "Times Up!";
     clearInterval(clockStart);
+    startGame.style.display = "block";
+    startGame.textContent = "Try Again";
     }
 }, 1000);
 
 var timerBarEl = document.getElementById("time-score");
 //console.log(timerBarEl);
 topBar.appendChild(timerBarEl);
+startGame.style.display = "none";
 
 }
 
+// function showQuestions(questions) {
+//     for (var i = 0; i > questions.length; i++) {
+//         var question = questions[i].q;
+//         var answer = questions[i].correctAnswer;
+//         var userAnswer = confirm(question);
+
+//         if (userAnswer === answer) {
+//             alert("Correct");
+//         } else {
+//             alert("Incorrect!");
+//         }
+//     }
+// };
 
 
-
+//showQuestions();
+//console.log(questions[0].answers);
 startGame.onclick = gameStart;
