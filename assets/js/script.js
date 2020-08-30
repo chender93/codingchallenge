@@ -1,62 +1,68 @@
 var topBar = document.querySelector("#info-line");
 var startGame = document.getElementById("start");
+var gameBox = document.querySelector("#viewArea");
+var score = 0;
+var questionIndex = 0;
+var answersUl = document.createElement("ul");
 //console.log(startGame);
 var questions = [
     {
         q: "What does the acronymn CSS stand for?" ,
-        answers: {
-        a1: "Cascading Simple Sheets",
-        a2: "Composing Style Sets",
-        a3: "Cascading Style Sets",
-        a4: "Cascading Style Sheets"
+        options: [
+        "Cascading Simple Sheets", 
+        "Composing Style Sets", 
+        "Cascading Style Sets", 
+        "Cascading Style Sheets"
+    ],
+        correctAnswer: "Cascading Style Sheets"
     },
 
-    correctAnswer: "a3"
-},
-{
+    {
     q: "Where do good developers start when creating a website?" ,
-    answers: {
-    a1: "Creating the CSS",
-    a2: "Sketching the pages",
-    a3: "Critiquing the customer's vision",
-    a4: "Google different ideas for implementation"
-},
+    options: [
+     "Creating the CSS",
+     "Sketching the pages",
+     "Critiquing the customer's vision",
+     "Google different ideas for implementation"
+    ],
+        correctAnswer: "Sketching the pages"
+    }, 
 
-correctAnswer: "a2"
-},    {
+    {
     q: "What are the 3 staples fo web development" ,
-    answers: {
-    a1: "HTTP, CSS, and JavaScript",
-    a2: "HTML, C++, and JavaScript",
-    a3: "HTML, CSS, and Java",
-    a4: "HTML, CSS, and JavaScript"
-},
+    options: [
+    "HTTP, CSS, and JavaScript",
+    "HTML, C++, and JavaScript",
+    "HTML, CSS, and Java",
+    "HTML, CSS, and JavaScript"
+    ],
+        correctAnswer: "HTML, CSS, and JavaScript"
+    }, 
 
-correctAnswer: "a4"
-},    {
+    {
     q: "When in doubt about a concept, You should..." ,
-    answers: {
-    a1: "Wing it until you find out the right answer",
-    a2: "Pass the project on to another developer",
-    a3: "Use your Google-Fu power!",
-    a4: "Tell the customer the feature is impossible"
-},
+    options: [
+    "Wing it until you find out the right answer",
+    "Pass the project on to another developer",
+    "Use your Google-Fu power!",
+    "Tell the customer the feature is impossible"
+    ],
+    correctAnswer: "Use your Google-Fu power!"
+    },
 
-correctAnswer: "a3"
-},    {
+    {
     q: "What element 'links' the CSS page to your website?" ,
-    answers: {
-    a1: "<link>",
-    a2: "<a href>",
-    a3: "<style>",
-    a4: "<stylesheet>"
-},
-
-correctAnswer: "a1"
-},
+    options: [
+    "<link>",
+    "<a href>",
+    "<style>",
+    "<stylesheet>"
+    ],
+    correctAnswer: "<link>"
+    },
 
 ];
-function gameStart() {
+startGame.addEventListener("click", function () {
 
     var timeLeft = 90;
     var clockStart = setInterval(function() {
@@ -66,33 +72,59 @@ function gameStart() {
     } else {
     timerBarEl.textContent = "Times Up!";
     clearInterval(clockStart);
-    startGame.style.display = "block";
     startGame.textContent = "Try Again";
     }
 }, 1000);
 
-var timerBarEl = document.getElementById("time-score");
+var timerBarEl = document.createElement("li");
+timerBarEl.className = ".top-border";
+timerBarEl.textContent = "Time Left: " + timeLeft;
 //console.log(timerBarEl);
 topBar.appendChild(timerBarEl);
 startGame.style.display = "none";
 
+function showQuestions(questionIndex) {
+    //Places each question on the screen
+    for (var i = 0; i <questions.length; i++) {
+        //Question Diplay
+        var currentQuestion = questions[questionIndex].q;
+        var userOptions = questions[questionIndex].options;
+        gameBox.textContent = currentQuestion;
+    }
+    //Places the options on the screen
+    userOptions.forEach(function (items) {
+        var optionEl = document.createElement("li");
+        optionEl.textContent = items;
+        gameBox.appendChild(answersUl);
+        answersUl.appendChild(optionEl);
+        optionEl.addEventListener("click", (grade));
+    })
+function grade(event) {
+    var pick = event.target;
+
+    if (pick.matches("li")) {
+
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
+        //If the answer is correct
+        if(pick.textContent === questions[questionIndex].correctAnswer) {
+            createDiv.textContent = "Correct!"
+        } else {
+            //If the answer is wrong -- Will deduct 10 seconds
+            timeLeft = timeLeft - 10;
+            createDiv.textContent = "Wrong!"
+        }
+    }
+    questionIndex++;
+    if (questionIndex >= questions.length) {
+        gameOver();
+        createDiv.textContent = "Game Finished! Your final score is" + timeLeft;
+    } else {
+        showQuestions(questionIndex);
+    }
+    gameBox.appendChild(createDiv);
 }
 
-// function showQuestions(questions) {
-//     for (var i = 0; i > questions.length; i++) {
-//         var question = questions[i].q;
-//         var answer = questions[i].correctAnswer;
-//         var userAnswer = confirm(question);
-
-//         if (userAnswer === answer) {
-//             alert("Correct");
-//         } else {
-//             alert("Incorrect!");
-//         }
-//     }
-// };
-
-
-//showQuestions();
-//console.log(questions[0].answers);
-startGame.onclick = gameStart;
+    
+}
+});

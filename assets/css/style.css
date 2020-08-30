@@ -28,8 +28,10 @@ body {
 main {
     text-align: center;
 }
-.game-wrapper {
-    display: none;
+#viewArea {
+    margin: 0 auto;
+    color: var(--accent);
+    text-align: center;
 }
 .start-button {
     font-size: 28px;
