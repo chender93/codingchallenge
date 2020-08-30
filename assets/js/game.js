@@ -39,17 +39,76 @@ var answersUl = document.getElementById("answer-options");
 var rightWrong = document.getElementById("notification");
 var viewedQuestion = 0;
 var timeLeft = 90;
+var finalScore = 90;
+//var hiScore = 0;
+var timerBarEl = document.createElement("li");
 
 //Functions
 //Starts the time and keeps track for scoring
 startBtn.addEventListener("click", function timerStart() {
     var timeLeft = 90;
-    var timerBarEl = document.createElement("li");
     timerBarEl.className = ".top-border";
     timerBarEl.textContent = "Time Left: " + timeLeft;
     //console.log(timerBarEl);
     topDiv.appendChild(timerBarEl);
+});
 
+
+//Places the questions on the screen for the user to answer
+function showQuestion() {
+    //I need to firgure out whether I should do an if/else or for loop to run the questions
+    if(questions[viewedQuestion]) {
+    var question = questions[viewedQuestion];
+    qDisplay.textContent = question.q;
+    for (var i = 0; i < question.options.length; i++) {
+        var optionEl = document.createElement("button");
+        optionEl.textContent = question.options[i];
+        answersUl.appendChild(optionEl);
+        optionEl.addEventListener("click", validateAnswer)
+     }
+}
+};
+//Runs if/else statements to see if the choice was correct
+function validateAnswer() {
+    var question = questions[viewedQuestion];
+    if (questions[viewedQuestion] && viewedQuestion < questions.length) {
+        if (question.correctAnswer === this.textContent) {
+        rightWrong.textContent = "Correct!";
+        rightWrong.className = "right";
+        } else {
+        rightWrong.textContent = "Incorrect!";
+        rightWrong.className = "wrong";
+        timeLeft = timeLeft - 10;
+        }
+        }
+    viewedQuestion++;
+    answersUl.innerHTML = "";
+    showQuestion();
+    lastTime();
+    //console.log(viewedQuestion);
+};
+
+//If statement for last question and function to calculate score
+function lastTime() {
+    if(viewedQuestion >= questions.length) {
+        clearInterval(countdown);
+        rightWrong.innerHTML = "Your final score is " + timeLeft;
+        qDisplay.innerHTML = "";
+        startBtn.style.display = "inline";
+        timerBarEl.textContent = "Game Finished!";
+        clearInterval(countdown);
+    }
+};
+
+//Create a function to stop the game and calculate score
+// function calculateScore() {
+//     qDisplay.innerHTML = "";
+//     rightWrong.textContent = "Your final score is " + timeLeft;
+//     clearInterval(countdown);
+//     startBtn.style.display = "inline";
+// }
+
+function countdown() {
     var clockStart = setInterval(function() {
         if (timeLeft >= 0) {
             timerBarEl.textContent = "Time Left: " + timeLeft;
@@ -63,42 +122,5 @@ startBtn.addEventListener("click", function timerStart() {
         }
         }, 1000);
         showQuestion();
-});
-
-//Places the questions on the screen for the user to answer
-function showQuestion() {
-    //I need to firgure out whether I should do an if/else or for loop to run the questions
-    //if(viewedQuestion > questions.length) {
-    var question = questions[viewedQuestion];
-    qDisplay.textContent = question.q;
-    for (var i = 0; i < question.options.length; i++) {
-        var optionEl = document.createElement("button");
-        optionEl.textContent = question.options[i];
-        answersUl.appendChild(optionEl);
-        optionEl.addEventListener("click", validateAnswer)
-     }
-    //} else {
-    calculateScore();
-    //}
-};
-//Runs if/else statements to see if the choice was correct
-function validateAnswer() {
-    var question = questions[viewedQuestion];
-    if (question.correctAnswer === this.textContent) {
-        rightWrong.textContent = "Correct!";
-    } else {
-        rightWrong.textContent = "Incorrect!";
-        timeLeft = timeLeft - 10;
-    }
-    viewedQuestion++;
-    answersUl.innerHTML = "";
-    showQuestion();
-};
-
-//Create a function to stop the game and calculate score
-function calculateScore() {
-    qDisplay.innerHTML = "";
-    rightWrong.textContent = "Your final score is" + timeLeft;
-    clearInterval(clockStart);
-    startBtn.style.display = "inline";
-}
+    };
+startBtn.addEventListener("click", countdown);

@@ -41,3 +41,27 @@ main {
 .start-button:hover {
     background-color: var(--secondary);
 }
+.options button{
+    display: block;
+    font-size: 18px;
+    padding: 5px 10px;
+    color: var(--tertiary);
+    background-color: var(--accent);
+    margin: 30px auto;
+    width: 40%;
+}
+
+.options button:hover {
+    background-color: var(--secondary);
+    color: var(--accent);
+}
+#notification {
+    font-size: 30px;
+    font-style: italic;
+}
+.right{
+    color: green;
+}
+.wrong {
+    color: red;
+}
