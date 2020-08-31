@@ -133,6 +133,7 @@ function countdown() {
     console.log(playerName);
     console.log(score);
     }
+    qDisplay.textContent = "Thank you for saving your score!"
 };
 
 startBtn.addEventListener("click", timerStart);
