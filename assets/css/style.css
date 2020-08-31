@@ -10,6 +10,10 @@ body {
     color: var(--secondary);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+h1 a {
+    text-decoration: none;
+    color: inherit;
+}
 .top-border {
     font-size: 24px;
     color: var(--accent);
@@ -32,6 +36,13 @@ main {
     margin: 0 auto;
     color: var(--accent);
     text-align: center;
+}
+#question {
+    font-size: 34px;
+    border-bottom: var(--tertiary) 3px solid;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 10px 0 10px;
 }
 .start-button {
     font-size: 28px;
@@ -58,6 +69,11 @@ main {
 #notification {
     font-size: 30px;
     font-style: italic;
+}
+.final {
+    font-size: 30px;
+    font-style: italic;
+    color: var(--accent);
 }
 .right{
     color: green;

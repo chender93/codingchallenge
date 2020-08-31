@@ -40,7 +40,7 @@ var rightWrong = document.getElementById("notification");
 var viewedQuestion = 0;
 var timeLeft = 90;
 var finalScore = 90;
-//var hiScore = 0;
+var hiScoreSave = document.getElementById("submit")
 var timerBarEl = document.createElement("li");
 
 //Functions
@@ -92,6 +92,7 @@ function validateAnswer() {
 //If statement for last question and function to calculate score
 function lastTime() {
     if(viewedQuestion >= questions.length) {
+        rightWrong.className = "final";
         rightWrong.innerHTML = "Your final score is " + timeLeft;
         timeLeft = timeLeft - 100;
         qDisplay.innerHTML = "";
@@ -119,6 +120,22 @@ function countdown() {
                     
     };
 
+//Function to log hi-score
+    function logHiScore() {
+    var playerName = document.querySelector("#init").value;
+    var score = timeLeft + 100;
+    if (playerName === "") {
+        alert("You must place your initals to save your score!")
+        return;
+    } else {
+        localStorage.setItem('name', playerName);
+        localStorage.setItem('score', score);
+    console.log(playerName);
+    console.log(score);
+    }
+};
+
 startBtn.addEventListener("click", timerStart);
 startBtn.addEventListener("click", countdown);
 startBtn.addEventListener("click", showQuestion);
+hiScoreSave.addEventListener("click", logHiScore);
