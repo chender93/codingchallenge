@@ -45,13 +45,15 @@ var timerBarEl = document.createElement("li");
 
 //Functions
 //Starts the time and keeps track for scoring
-startBtn.addEventListener("click", function timerStart() {
+//Entire function wrapper for game
+
+function timerStart() {
     var timeLeft = 90;
     timerBarEl.className = ".top-border";
     timerBarEl.textContent = "Time Left: " + timeLeft;
     //console.log(timerBarEl);
     topDiv.appendChild(timerBarEl);
-});
+};
 
 
 //Places the questions on the screen for the user to answer
@@ -85,42 +87,38 @@ function validateAnswer() {
     answersUl.innerHTML = "";
     showQuestion();
     lastTime();
-    //console.log(viewedQuestion);
 };
 
 //If statement for last question and function to calculate score
 function lastTime() {
     if(viewedQuestion >= questions.length) {
-        clearInterval(countdown);
         rightWrong.innerHTML = "Your final score is " + timeLeft;
+        timeLeft = timeLeft - 100;
         qDisplay.innerHTML = "";
         startBtn.style.display = "inline";
-        timerBarEl.textContent = "Game Finished!";
-        clearInterval(countdown);
+        //var hiScoreAnn = document.createElement = "p";
     }
 };
 
-//Create a function to stop the game and calculate score
-// function calculateScore() {
-//     qDisplay.innerHTML = "";
-//     rightWrong.textContent = "Your final score is " + timeLeft;
-//     clearInterval(countdown);
-//     startBtn.style.display = "inline";
-// }
-
 function countdown() {
     var clockStart = setInterval(function() {
-        if (timeLeft >= 0) {
+        if (timeLeft > 0) {
+            startBtn.style.display = "none";
             timerBarEl.textContent = "Time Left: " + timeLeft;
             timeLeft--;
-            startBtn.style.display = "none";
         } else {
-            timerBarEl.textContent = "Times Up!";
+            timerBarEl.textContent = "Game Over";
             clearInterval(clockStart);
             startBtn.style.display = "inline";
-            startBtn.textContent = "Try Again";
+            startBtn.textContent = "Thanks for Playing";
+            var initialsEl = document.getElementById("hiscore");
+            initialsEl.style.display = "inline";
+
         }
         }, 1000);
-        showQuestion();
+                    
     };
+
+startBtn.addEventListener("click", timerStart);
 startBtn.addEventListener("click", countdown);
+startBtn.addEventListener("click", showQuestion);

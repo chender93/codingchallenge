@@ -65,3 +65,14 @@ main {
 .wrong {
     color: red;
 }
+.init {
+    font-size: 24px;
+    color: var(--tertiary);
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+}
+#hiscore {
+    display: none;
+}
