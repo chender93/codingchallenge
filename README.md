@@ -7,7 +7,7 @@ I was tasked with creating a functioning quiz game that will save and log hi-sco
 - The quiz should let the user know if they are correct or incorrect for each answer. If the user is in fact incorrect, they will have a 10 seccond/ point penalty taken from their final score.
 - Once the user has finished the game successfully, they will be able to save their score.
 
-![] (https://raw.githubusercontent.com/chender93/codingchallenge/master/assets/images/Curtis'%20Coding%20Challenge.gif)
+![Quiz Walkthrough] (https://raw.githubusercontent.com/chender93/codingchallenge/master/assets/images/Curtis'%20Coding%20Challenge.gif)
 ## Approach
 I started the HTML process by sketching out how I wanted the page to look. I added CSS styling to make the page feel more appealing to the user. After I defined the default page loaded CSS, I added classes for the Correct/Incorrect notifications and game box.
 
