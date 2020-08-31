@@ -108,12 +108,14 @@ function countdown() {
             timerBarEl.textContent = "Time Left: " + timeLeft;
             timeLeft--;
         } else {
+            answersUl.style.display = "none";
             timerBarEl.textContent = "Game Over";
             clearInterval(clockStart);
             startBtn.style.display = "inline";
             startBtn.textContent = "Thanks for Playing";
             var initialsEl = document.getElementById("hiscore");
             initialsEl.style.display = "inline";
+
 
         }
         }, 1000);
